@@ -1,10 +1,12 @@
 include build/definitions.mk
 
 SHELL := /bin/bash
-ENVIRONMENTS = dev prod
-COMPOSE_PROJECT_BASE := localvideoplatform2
-environment ?= dev
-logs ?= web
+ENVIRONMENTS := dev prod ci
+export DOCKER_IMAGE_BASENAME := videoplatform2
+export DOCKER_ENVIRONMENT := error # set by recipe
+export DOCKER_IMAGE_TAG_CI := latest
+DOCKER_BASE_IMAGE := ${DOCKER_IMAGE_BASENAME}/base:dev
+COMPOSE_PROJECT_BASE := ${DOCKER_IMAGE_BASENAME}
 
 # build and run in prod environment, default target
 .PHONY: prod
@@ -21,21 +23,26 @@ init:
 
 # build docker images in the specified environment
 .PHONY: build\:%
-build\:%: environment=$*
+build\:%: DOCKER_ENVIRONMENT=$*
 build\:%:
 	$(call check_environment)
-	docker build -f build/Dockerfile.base -t ${COMPOSE_PROJECT_BASE}base:latest .
-	$(call compose,build)
+	docker build -f build/Dockerfile.base -t ${DOCKER_BASE_IMAGE} .
+	$(call compose,build --build-arg DOCKER_BASE_IMAGE=${DOCKER_BASE_IMAGE})
 	docker image prune -f
 
 # start all services in the specified environment
 .PHONY: run\:%
-run\:%: environment=$*
+run\:%: DOCKER_ENVIRONMENT=$*
 run\:%:
 	$(call check_environment)
 	$(call compose,up --remove-orphans -d)
 	$(call compose,logs -f); \
 	$(call compose,down)
+
+.PHONY: push
+push: DOCKER_ENVIRONMENT=ci
+push:
+	$(call compose,push --ignore-push-failures)
 
 # clean up any files that were automatically created
 .PHONY: clean
@@ -46,9 +53,9 @@ clean:
 	rm -rf node_modules
 
     # docker
-	docker image rm -f ${COMPOSE_PROJECT_BASE}base:latest > /dev/null 2>&1
+	docker image rm -f ${DOCKER_BASE_IMAGE} > /dev/null 2>&1
 	docker image prune -f > /dev/null
-	@$(call compose-foreach-print,environment,${ENVIRONMENTS},--log-level ERROR down --rmi local --volumes --remove-orphans)
+	@$(call compose-foreach-print,DOCKER_ENVIRONMENT,${ENVIRONMENTS},--log-level ERROR down --rmi all --volumes --remove-orphans)
 	docker builder prune -af > /dev/null
 
 # run eslint

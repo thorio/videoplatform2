@@ -3,7 +3,6 @@ version: "3.7"
 
 services:
   proxy:
-    image: haproxy:2.4.2-alpine
     volumes:
       - ../services/proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
 

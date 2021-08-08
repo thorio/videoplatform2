@@ -1,4 +1,5 @@
-FROM localvideoplatform2base:latest AS dev
+ARG DOCKER_BASE_IMAGE
+FROM $DOCKER_BASE_IMAGE AS dev
 
 WORKDIR /source/services/api
 

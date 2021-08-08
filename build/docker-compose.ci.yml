@@ -1,0 +1,12 @@
+---
+version: "3.7"
+
+services:
+  proxy:
+    image: $DOCKER_IMAGE_BASENAME/proxy:$DOCKER_IMAGE_TAG_CI
+
+  web:
+    image: $DOCKER_IMAGE_BASENAME/web:$DOCKER_IMAGE_TAG_CI
+
+  api:
+    image: $DOCKER_IMAGE_BASENAME/api:$DOCKER_IMAGE_TAG_CI

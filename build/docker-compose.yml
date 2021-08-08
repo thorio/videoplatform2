@@ -3,6 +3,7 @@ version: "3.7"
 
 services:
   proxy:
+    image: $DOCKER_IMAGE_BASENAME/proxy:$DOCKER_ENVIRONMENT
     build:
       context: ..
       dockerfile: ./services/proxy/Dockerfile
@@ -13,6 +14,7 @@ services:
       - proxy
 
   web:
+    image: $DOCKER_IMAGE_BASENAME/web:$DOCKER_ENVIRONMENT
     build:
       context: ..
       dockerfile: ./services/web/Dockerfile
@@ -21,6 +23,7 @@ services:
       - proxy
 
   api:
+    image: $DOCKER_IMAGE_BASENAME/api:$DOCKER_ENVIRONMENT
     build:
       context: ..
       dockerfile: ./services/api/Dockerfile
