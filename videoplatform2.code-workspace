@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+	],
+	"settings": {
+		"scssFormatter.printWidth": 9999,
+		"scssFormatter.singleQuote": false,
+		"files.associations": {
+			".jsbeautifyrc": "jsonc",
+		},
+		"task.autoDetect": "off",
+	},
+}

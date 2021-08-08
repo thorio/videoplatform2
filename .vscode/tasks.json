@@ -1,0 +1,78 @@
+{
+	"version": "2.0.0",
+	"presentation": {
+		"echo": true,
+		"reveal": "always",
+		"focus": false,
+		"panel": "dedicated",
+		"showReuseMessage": true,
+		"clear": true
+	},
+
+	"tasks": [
+		// build / run
+		{
+			"label": "build and start - dev",
+			"detail": "initializes, builds and runs all services in dev (watch) mode",
+			"group": "build",
+			"type": "shell",
+			"isBackground": true,
+			"command": "make dev",
+			"problemMatcher": [],
+		},
+		{
+			"label": "build and start - prod",
+			"detail": "initializes, builds and runs all services in production mode",
+			"group": "build",
+			"type": "shell",
+			"isBackground": true,
+			"command": "make prod",
+			"problemMatcher": [],
+		},
+		{
+			"label": "start only - dev",
+			"detail": "starts all services in dev mode. WARNING: will fail if nothing is built!",
+			"group": "build",
+			"type": "shell",
+			"isBackground": true,
+			"command": "make run:dev",
+			"problemMatcher": [],
+		},
+
+		// test / lint
+		{
+			"label": "lint",
+			"detail": "run eslint and only report problems",
+			"group": "test",
+			"type": "shell",
+			"command": "make lint",
+			"problemMatcher": "$eslint-stylish",
+		},
+		{
+			"label": "lint and fix",
+			"detail": "run eslint and fix all fixable problems",
+			"group": "test",
+			"type": "shell",
+			"command": "make lint:fix",
+			"problemMatcher": "$eslint-stylish",
+		},
+
+		// misc
+		{
+			"label": "clean",
+			"detail": "clean up any files that were automatically created",
+			"group": "none",
+			"type": "shell",
+			"command": "make clean",
+			"problemMatcher": [],
+		},
+		{
+			"label": "init",
+			"detail": "(re)-initialize after a clone or clean",
+			"group": "none",
+			"type": "shell",
+			"command": "make init",
+			"problemMatcher": [],
+		}
+	]
+}

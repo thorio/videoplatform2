@@ -1,0 +1,32 @@
+---
+version: "3.7"
+
+services:
+  proxy:
+    build:
+      context: ..
+      dockerfile: ./services/proxy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 3000:8080
+    networks:
+      - proxy
+
+  web:
+    build:
+      context: ..
+      dockerfile: ./services/web/Dockerfile
+    restart: unless-stopped
+    networks:
+      - proxy
+
+  api:
+    build:
+      context: ..
+      dockerfile: ./services/api/Dockerfile
+    restart: unless-stopped
+    networks:
+      - proxy
+
+networks:
+  proxy:

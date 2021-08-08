@@ -1,0 +1,11 @@
+{
+	"version": "0.0.0",
+	"name": "@videoplatform2/root",
+	"private": true,
+	"engines": {
+		"node": "^14.17.4"
+	},
+	"devDependencies": {
+		"lerna": "^4.0.0"
+	}
+}

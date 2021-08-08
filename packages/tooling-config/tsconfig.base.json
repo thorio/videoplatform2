@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"allowJs": false,
+		"sourceMap": true,
+		"strict": true,
+		"experimentalDecorators": true,
+	},
+}

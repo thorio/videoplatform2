@@ -1,0 +1,33 @@
+{
+	"extends": "./node_modules/@videoplatform2/tooling-config/tsconfig.base.json",
+	"compilerOptions": {
+		"target": "ES2018",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"esModuleInterop": true,
+
+		"baseUrl": ".",
+
+		"allowJs": true,
+		"experimentalDecorators": true,
+
+		"noEmit": true,
+
+		"lib": [
+			"ESNext",
+			"ESNext.AsyncIterable",
+			"DOM",
+		],
+
+		"types": [
+			"@nuxt/types",
+			"@types/node",
+		],
+	},
+
+	"exclude": [
+		"node_modules",
+		".nuxt",
+		"dist",
+	],
+}

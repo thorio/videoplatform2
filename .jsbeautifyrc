@@ -1,0 +1,19 @@
+{
+	"indent_with_tabs": true,
+	"preserve_newlines": true,
+	"end_with_newline": true,
+
+	"js": {
+		"brace_style": "collapse,preserve-inline",
+		"max_preserve_newlines": 2,
+		"keep_array_indentation": true
+	},
+
+	// settings must be duplicated to vetur.config.js: settings > vetur.format.defaultFormatterOptions > js-beautify-html
+	"html": {
+		"max_preserve_newlines": 1,
+		"wrap_line_length": 0,
+		"wrap_attributes": "preserve",
+		"inline": ["a", "abbr", "area", "audio", "b", "bdi", "bdo", "br", "button", "cite", "code", "data", "datalist", "del", "dfn", "em", "i", "input", "ins", "kbd", "keygen", "label", "map", "mark", "math", "meter", "noscript", "object", "output", "progress", "q", "ruby", "s", "samp", "select", "small", "span", "strong", "sub", "sup", "svg", "template", "textarea", "time", "u", "var", "video", "wbr", "text", "acronym", "address", "big", "dt", "ins", "strike", "tt"]
+	}
+}

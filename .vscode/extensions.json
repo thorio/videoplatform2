@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"hookyqr.beautify",
+		"ms-azuretools.vscode-docker",
+		"editorconfig.editorconfig",
+		"dbaeumer.vscode-eslint",
+		"sibiraj-s.vscode-scss-formatter",
+		"gruntfuggly.todo-tree",
+		"shardulm94.trailing-spaces",
+		"octref.vetur",
+	]
+}

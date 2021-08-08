@@ -1,0 +1,62 @@
+{
+	// formatting
+
+	// extension w/o formatter => disable by default
+	"editor.defaultFormatter": "vscode.git",
+
+	// then select a formatter explicitly
+	"[vue]": {
+		"editor.defaultFormatter": "octref.vetur",
+	},
+	"[html]": {
+		"editor.defaultFormatter": "HookyQR.beautify",
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "HookyQR.beautify",
+	},
+	"[json]": {
+		"editor.defaultFormatter": "HookyQR.beautify",
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "HookyQR.beautify",
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter",
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features",
+	},
+
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+	},
+
+	// formatting rules for vscode.typescript-language-features
+	"typescript.preferences.quoteStyle": "double",
+	"typescript.format.semicolons": "insert",
+	"typescript.format.insertSpaceAfterCommaDelimiter": true,
+	"typescript.format.insertSpaceAfterConstructor": false,
+	"typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+	"typescript.format.insertSpaceAfterKeywordsInControlFlowStatements": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": false,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+	"typescript.format.insertSpaceAfterSemicolonInForStatements": true,
+	"typescript.format.insertSpaceAfterTypeAssertion": false,
+	"typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+	"typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+	"typescript.format.placeOpenBraceOnNewLineForControlBlocks": false,
+	"typescript.format.placeOpenBraceOnNewLineForFunctions": false,
+
+	// explorer exclusions
+	"files.exclude": {
+		"**/node_modules": true,
+		"**/.eslintcache": true,
+		"LICENSE": true,
+		"package-lock.json": true,
+	},
+}

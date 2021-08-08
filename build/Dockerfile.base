@@ -1,0 +1,29 @@
+# build context needs to be repository root!
+
+# this image provides the base for the individual service's builds
+# it copies the source and installs dependencies
+
+FROM alpine:3.14.0 AS filter
+
+WORKDIR /source
+COPY . .
+
+# we want to copy only the package.json files and install dependencies before copying any source files.
+# this allows docker to cache the dependencies and speed up build times.
+# docker can't COPY with globs yet, so it needs to happen in this filter stage.
+RUN mkdir /filter && \
+	cp --parents ./*/*/package*.json package.json lerna.json /filter/
+
+# this stage initializes the development environment
+FROM node:14.17.4-alpine AS base
+
+# install tools
+RUN npm install lerna --global
+
+# install dependencies and link local packages
+WORKDIR /source
+COPY --from=filter /filter .
+RUN lerna bootstrap --ci
+
+# copy the rest of the source code
+COPY ./ .

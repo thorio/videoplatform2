@@ -1,0 +1,23 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "pwa-node",
+			"name": "api",
+			"request": "attach",
+			"port": 9230,
+			"restart": true,
+			"sourceMaps": true,
+			"localRoot": "${workspaceFolder}",
+			"remoteRoot": "/",
+			"sourceMapPathOverrides": {
+				"webpack://?:*/src/*": "${workspaceFolder}/services/api/src/*",
+				"webpack://?:*/packages/*": "${workspaceFolder}/packages/*",
+			},
+			"skipFiles": [
+				"<node_internals>/**",
+				"**/node_modules/**",
+			],
+		}
+	],
+}

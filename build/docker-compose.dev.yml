@@ -1,0 +1,24 @@
+---
+version: "3.7"
+
+services:
+  proxy:
+    image: haproxy:2.4.2-alpine
+    volumes:
+      - ../services/proxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro
+
+  web:
+    build:
+      target: dev
+    volumes:
+      - ../services/web/src:/source/services/web/src:ro
+      - ../packages/lib/src:/source/packages/lib/src:ro
+
+  api:
+    build:
+      target: dev
+    ports:
+      - 9230:9229
+    volumes:
+      - ../services/api/src:/source/services/api/src:ro
+      - ../packages/lib/src:/source/packages/lib/src:ro
