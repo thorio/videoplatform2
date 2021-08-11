@@ -57,6 +57,5 @@
 		"**/node_modules": true,
 		"**/.eslintcache": true,
 		"LICENSE": true,
-		"package-lock.json": true,
 	},
 }

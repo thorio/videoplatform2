@@ -1,0 +1,44 @@
+name: nightly build and publish
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # every night at 02:00 UST
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_TAG: nightly
+  DOCKER_BUILDKIT: 1
+  GIT_BRANCH: dev
+
+jobs:
+  publish:
+    name: build and publish
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ env.GIT_BRANCH }}
+
+      - id: should_run
+        name: Check if latest commit is less than a day old
+        continue-on-error: true
+        # 25 hours => schedule triggers aren't very accurate, so adding some overlap with the previous 24 hours
+        run: if [ -z $(git rev-list -1 --after="25 hours" HEAD) ] ; then echo "::set-output name=should_run::false" ; fi
+
+      - name: Log in to the container registry
+        uses: docker/login-action@v1.10.0
+        if: steps.should_run.outputs.should_run != 'false'
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push nightly build
+        if: steps.should_run.outputs.should_run != 'false'
+        run: make build:ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} DOCKER_IMAGE_TAG_CI=${{ env.IMAGE_TAG }}

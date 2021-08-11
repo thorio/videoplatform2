@@ -5,7 +5,7 @@ ENVIRONMENTS := dev prod ci
 export DOCKER_IMAGE_BASENAME := videoplatform2
 export DOCKER_ENVIRONMENT := error # set by recipe
 export DOCKER_IMAGE_TAG_CI := latest
-DOCKER_BASE_IMAGE := ${DOCKER_IMAGE_BASENAME}/base:dev
+DOCKER_BASE_IMAGE := videoplatform2/base:dev
 COMPOSE_PROJECT_BASE := ${DOCKER_IMAGE_BASENAME}
 
 # build and run in prod environment, default target
@@ -19,6 +19,7 @@ dev: init build\:dev run\:dev
 # (re)-initialize after a clone or clean
 .PHONY: init
 init:
+	npm ci
 	npx lerna --loglevel silent bootstrap --ci
 
 # build docker images in the specified environment
@@ -58,12 +59,13 @@ clean:
 	@$(call compose-foreach-print,DOCKER_ENVIRONMENT,${ENVIRONMENTS},--log-level ERROR down --rmi all --volumes --remove-orphans)
 	docker builder prune -af > /dev/null
 
-# run eslint
+# run linters
 .PHONY: lint
 lint:
-	@$(call run-lint)
+	@! find . -name node_modules -prune -o -type f -exec file "{}" ";" | grep CRLF || (echo -e "\nCRLF found!\n" && false)
+	@lerna exec --loglevel silent --stream --no-prefix --no-bail -- npm run --silent --if-present lint -- --color ${ESLINT_ARGS}
 
-# run eslint and fix all fixable problems
+# run linters and fix all fixable problems
 .PHONY: lint\:fix
-lint\:fix:
-	@$(call run-lint,--fix)
+lint\:fix: ESLINT_ARGS=--fix
+lint\:fix: lint

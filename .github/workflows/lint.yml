@@ -1,0 +1,30 @@
+name: lint
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4.0
+        with:
+          node-version: 14.17.4
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Initialize the environment
+        run: make init
+
+      - name: Lint
+        run: make lint

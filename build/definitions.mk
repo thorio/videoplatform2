@@ -10,10 +10,6 @@ define check_environment
 $(if $(filter ${DOCKER_ENVIRONMENT},${ENVIRONMENTS}),,$(error invalid environment '${DOCKER_ENVIRONMENT}'))
 endef
 
-define run-lint
-lerna exec --loglevel silent --stream --no-prefix --no-bail -- npm run --silent --if-present lint -- --color $1
-endef
-
 define compose-foreach-print
 $(foreach $(1),$(2), echo $(call compose,${3}) && export DOCKER_ENVIRONMENT=${DOCKER_ENVIRONMENT} && $(call compose,${3}) &&) true
 endef

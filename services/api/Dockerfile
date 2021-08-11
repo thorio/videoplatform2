@@ -18,7 +18,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # install production dependencies
-COPY --from=build /source/services/api/package*.json /app
+COPY --from=build /source/services/api/package*.json /app/
 RUN npm ci --production
 
 # copy dist files
