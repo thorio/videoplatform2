@@ -43,7 +43,7 @@ run\:%:
 .PHONY: push
 push: DOCKER_ENVIRONMENT=ci
 push:
-	$(call compose,push --ignore-push-failures)
+	$(call compose,push)
 
 # clean up any files that were automatically created
 .PHONY: clean
