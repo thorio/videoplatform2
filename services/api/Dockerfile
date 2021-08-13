@@ -3,8 +3,10 @@ FROM $DOCKER_BASE_IMAGE AS dev
 
 WORKDIR /source/services/api
 
+RUN apk add dumb-init --no-cache
+
 # if stopped here, the container will start in dev mode with hot reloading
-CMD ["npm", "run", "dev"]
+CMD ["dumb-init", "npm", "run", "dev"]
 
 FROM dev AS build
 
