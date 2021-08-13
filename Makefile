@@ -40,6 +40,7 @@ run\:%:
 	$(call compose,logs -f); \
 	$(call compose,down)
 
+# push images to registry
 .PHONY: push
 push: DOCKER_ENVIRONMENT=ci
 push:
@@ -56,7 +57,7 @@ clean:
     # docker
 	docker image rm -f ${DOCKER_BASE_IMAGE} > /dev/null 2>&1
 	docker image prune -f > /dev/null
-	@$(call compose-foreach-print,DOCKER_ENVIRONMENT,${ENVIRONMENTS},--log-level ERROR down --rmi all --volumes --remove-orphans)
+	@$(call compose_foreach_print,DOCKER_ENVIRONMENT,${ENVIRONMENTS},--log-level ERROR down --rmi all --volumes --remove-orphans)
 	docker builder prune -af > /dev/null
 
 # run linters
