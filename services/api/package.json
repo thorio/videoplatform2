@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "nest build --webpack --webpackPath webpack.config.js --watch",
 		"build": "nest build --webpack --webpackPath webpack.config.js",
-		"clean": "rimraf dist .eslintcache",
+		"clean": "rm -rf dist .prisma .eslintcache",
 		"lint": "eslint src/**/*.{js,ts} --cache",
 		"special:drop-optional-dependencies": "npx json -I -f package.json -e 'delete this.optionalDependencies'"
 	},
@@ -13,6 +13,7 @@
 		"@nestjs/common": "^8.0.0",
 		"@nestjs/core": "^8.0.0",
 		"@nestjs/platform-express": "^8.0.5",
+		"@prisma/client": "^2.29.1",
 		"reflect-metadata": "^0.1.13",
 		"rxjs": "^7.2.0"
 	},
@@ -28,15 +29,17 @@
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-prettier": "^3.4.0",
 		"json": "^11.0.0",
+		"nodemon": "^2.0.7",
 		"nodemon-webpack-plugin": "^4.5.2",
 		"prettier": "^2.3.2",
-		"rimraf": "^3.0.2",
+		"prisma": "^2.29.1",
 		"ts-loader": "^9.2.3",
 		"ts-node": "^10.0.0",
 		"tsconfig-paths": "^3.10.1",
 		"typescript": "^4.3.5",
 		"webpack": "^5.48.0",
-		"webpack-node-externals": "^3.0.0"
+		"webpack-node-externals": "^3.0.0",
+		"webpack-shell-plugin-next": "^2.2.2"
 	},
 	"optionalDependencies": {
 		"@videoplatform2/lib": "^0.0.0",

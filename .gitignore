@@ -1,6 +1,7 @@
 node_modules
 
 # output/cache directories
-.nuxt
 dist
 .eslintcache
+.nuxt
+.prisma

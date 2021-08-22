@@ -1,6 +1,10 @@
 .git
-node_modules/
+.github
+.vscode
+build
+**/node_modules
 
 # output/cache directories
-dist
-.nuxt
+**/dist
+**/.nuxt
+**/.prisma

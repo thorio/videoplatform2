@@ -4,6 +4,7 @@
 		"ms-azuretools.vscode-docker",
 		"editorconfig.editorconfig",
 		"dbaeumer.vscode-eslint",
+		"prisma.prisma",
 		"sibiraj-s.vscode-scss-formatter",
 		"gruntfuggly.todo-tree",
 		"shardulm94.trailing-spaces",

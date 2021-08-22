@@ -8,6 +8,10 @@
 		"baseUrl": ".",
 		"outDir": "./dist",
 
+		"paths": {
+			"@prisma": [".prisma"],
+		},
+
 		"removeComments": true,
 		"experimentalDecorators": true,
 		"allowSyntheticDefaultImports": true,

@@ -21,3 +21,8 @@ services:
     volumes:
       - ../services/api/src:/source/services/api/src:ro
       - ../packages/lib/src:/source/packages/lib/src:ro
+      - ../services/api/prisma:/source/services/api/prisma:ro
+
+  db:
+    ports:
+      - 5432:5432

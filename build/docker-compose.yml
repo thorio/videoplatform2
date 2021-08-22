@@ -30,6 +30,23 @@ services:
     restart: unless-stopped
     networks:
       - proxy
+      - db
+
+  db:
+    image: postgres:13.3-alpine3.14
+    restart: unless-stopped
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=default
+    networks:
+      - db
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
 
 networks:
   proxy:
+  db:
+
+volumes:
+  db-data:

@@ -1,12 +1,18 @@
 import { Controller, Get } from "@nestjs/common";
-import { AppService } from "./app.service";
+import { PrismaClient, User, Video } from "@prisma";
 
 @Controller()
 export class AppController {
-	constructor(private readonly appService: AppService) { }
+	constructor(private readonly prisma: PrismaClient) { }
 
 	@Get()
-	getHello(): string {
-		return this.appService.getTest();
+	async getHello(): Promise<(User & { videos: Video[]; })[]> {
+		const a = await this.prisma.user.findMany({
+			include: {
+				videos: true,
+			},
+		});
+		this.prisma.$disconnect();
+		return a;
 	}
 }
