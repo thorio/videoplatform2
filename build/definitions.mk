@@ -13,3 +13,7 @@ endef
 define find_names
 \( -name $(1) $(foreach name,$(2),-o -name ${name} )\)
 endef
+
+define if-eq
+$(if $(filter $(2),$(1)),$(3),$(4))
+endef

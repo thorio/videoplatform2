@@ -35,7 +35,7 @@
 			"group": "build",
 			"type": "shell",
 			"isBackground": true,
-			"command": "make run:dev",
+			"command": "make run/dev",
 			"problemMatcher": [],
 		},
 
@@ -53,7 +53,7 @@
 			"detail": "run eslint and fix all fixable problems",
 			"group": "test",
 			"type": "shell",
-			"command": "make lint:fix",
+			"command": "make lint.fix",
 			"problemMatcher": "$eslint-stylish",
 		},
 

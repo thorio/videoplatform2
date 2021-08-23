@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push latest
-        run: make build:ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        run: make build/ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
       - name: Build and push tagged version
-        run: make build:ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} DOCKER_IMAGE_TAG_CI=$(echo $GITHUB_REF | grep -oP '(?<=refs/tags/v).*')
+        run: make build/ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} DOCKER_IMAGE_TAG_CI=$(echo $GITHUB_REF | grep -oP '(?<=refs/tags/v).*')

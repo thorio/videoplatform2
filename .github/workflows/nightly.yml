@@ -41,4 +41,4 @@ jobs:
 
       - name: Build and push nightly build
         if: steps.should_run.outputs.should_run != 'false'
-        run: make build:ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} DOCKER_IMAGE_TAG_CI=${{ env.IMAGE_TAG }}
+        run: make build/ci push DOCKER_IMAGE_BASENAME=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }} DOCKER_IMAGE_TAG_CI=${{ env.IMAGE_TAG }}
