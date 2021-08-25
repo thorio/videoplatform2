@@ -1,6 +1,15 @@
 ---
 version: "3.7"
 
+x-source: &source
+  # packages/lib
+  - ../packages/lib/src:/source/packages/lib/src:ro
+  # services/web
+  - ../services/web/src:/source/services/web/src:ro
+  # services/api
+  - ../services/api/src:/source/services/api/src:ro
+  - ../services/api/prisma:/source/services/api/prisma:ro
+
 services:
   proxy:
     volumes:
@@ -9,19 +18,14 @@ services:
   web:
     build:
       target: dev
-    volumes:
-      - ../services/web/src:/source/services/web/src:ro
-      - ../packages/lib/src:/source/packages/lib/src:ro
+    volumes: *source
 
   api:
     build:
       target: dev
     ports:
       - 9230:9229
-    volumes:
-      - ../services/api/src:/source/services/api/src:ro
-      - ../packages/lib/src:/source/packages/lib/src:ro
-      - ../services/api/prisma:/source/services/api/prisma:ro
+    volumes: *source
 
   db:
     ports:

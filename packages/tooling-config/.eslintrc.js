@@ -30,5 +30,6 @@ module.exports = {
 		}],
 		"no-var": "error",
 		"no-invalid-this": "error",
+		"prefer-const": "off",
 	},
 };

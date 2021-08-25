@@ -1,9 +1,10 @@
 import { Controller, Get } from "@nestjs/common";
-import { PrismaClient, User, Video } from "@prisma";
+import { User, Video } from "@prisma";
+import { PrismaService } from "./prisma/prisma.service";
 
 @Controller()
 export class AppController {
-	constructor(private readonly prisma: PrismaClient) { }
+	constructor(private readonly prisma: PrismaService) { }
 
 	@Get()
 	async getHello(): Promise<(User & { videos: Video[]; })[]> {
@@ -12,7 +13,7 @@ export class AppController {
 				videos: true,
 			},
 		});
-		this.prisma.$disconnect();
+
 		return a;
 	}
 }

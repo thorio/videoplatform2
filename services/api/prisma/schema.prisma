@@ -9,16 +9,16 @@ datasource db {
 }
 
 model User {
-    id           Int     @id @default(autoincrement())
+    id           String  @id @default(uuid())
     username     String  @unique
     passwordHash String
     videos       Video[]
 }
 
 model Video {
-    id         Int    @id @default(autoincrement())
+    id         String @id @default(uuid())
     title      String
     tags       String
-    uploaderId Int
+    uploaderId String
     uploader   User   @relation(fields: [uploaderId], references: [id])
 }

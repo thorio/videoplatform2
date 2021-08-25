@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "username" TEXT NOT NULL,
     "passwordHash" TEXT NOT NULL,
 
@@ -9,10 +9,10 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Video" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "tags" TEXT NOT NULL,
-    "uploaderId" INTEGER NOT NULL,
+    "uploaderId" TEXT NOT NULL,
 
     PRIMARY KEY ("id")
 );
