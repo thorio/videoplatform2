@@ -1,0 +1,9 @@
+$primary: #d77b0f;
+
+$background: #202020;
+$background-light: lighten($background, 3%);
+$background-dark: darken($background, 3%);
+
+$text: #dcddde;
+$text-dark: darken($text, 30%);
+$text-faint: darken($text, 50%);

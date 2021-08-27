@@ -1,33 +1,13 @@
 <template>
 	<div>
-		<p>{{ testVar }}</p>
-		<p>{{ apiResult }}</p>
+		<nuxt-link to="video/b18956b0-8b14-4c4b-9678-5cd0f8d0e7cf">
+			example video
+		</nuxt-link>
 	</div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { test } from "@videoplatform2/lib";
 
-function delay(milliseconds: number): Promise<void> {
-	return new Promise((resolve) => {
-		setTimeout(resolve, milliseconds);
-	});
-}
-
-export default Vue.extend({
-	data() {
-		return {
-			testVar: test("with lerna + nuxt + docker"),
-			apiResult: "loading...",
-		};
-	},
-
-	async fetch() {
-		await delay(500);
-
-		this.apiResult = await fetch("/api")
-			.then(res => res.text());
-	},
-});
+export default Vue.extend({});
 </script>
