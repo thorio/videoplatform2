@@ -8,6 +8,10 @@ export default {
 		"@nuxt/typescript-build",
 	],
 
+	modules: [
+		"@nuxtjs/apollo",
+	],
+
 	plugins: [
 		"~/plugins/element-ui",
 	],
@@ -34,5 +38,13 @@ export default {
 		link: [
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 		],
+	},
+
+	apollo: {
+		clientConfigs: {
+			default: {
+				httpEndpoint: "/api/graphql",
+			},
+		},
 	},
 };

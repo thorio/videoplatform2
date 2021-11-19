@@ -1,0 +1,19 @@
+type Video {
+	id: String!
+	title: String!
+	tags: String!
+	uploader: User!
+}
+
+type User {
+	id: String!
+	username: String!
+	videos: [Video!]!
+}
+
+type Query {
+	users: [User!]!
+	user(id: String!): User
+	videos: [Video!]!
+	video(id: String!): Video
+}

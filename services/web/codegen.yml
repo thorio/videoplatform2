@@ -1,0 +1,11 @@
+overwrite: true
+schema: "./schema.gql"
+documents: "src/apollo/**/*.gql"
+generates:
+  src/types/graphql.d.ts:
+    plugins:
+      - typescript-graphql-files-modules
+  src/types/types.ts:
+    plugins:
+      - typescript
+      - typescript-operations
